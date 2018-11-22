@@ -24,6 +24,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Arrays.*;
@@ -94,7 +95,8 @@ public class CustomerRepositoryTest {
 
 		customerRepo.save(customer);
 
-		assertThat(customerRepo.findByName("bert")).hasSize(2);
+		List<Customer> bert = customerRepo.findByName("bert");
+		assertThat(bert).hasSize(2);
 	}
 
 	@Test
@@ -143,6 +145,9 @@ public class CustomerRepositoryTest {
 		po2.customerRef = customer.id;
 
 		poRepo.saveAll(asList(po1, po2));
+
+		//assertThat(poRepo.findAll()).hasSize(2);
+		assertThat(poRepo.findByCustomerRef(customer.id)).hasSize(2);
 	}
 
 	@Test

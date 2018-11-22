@@ -15,11 +15,18 @@
  */
 package de.schauderhaft.talk;
 
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * @author Jens Schauder
  */
 public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, Long> {
 
+
+    @Query("select * from purchase_order where customer_ref = :customerRef ")
+    List<PurchaseOrder> findByCustomerRef(@Param("customerRef") long customerRef);
 }

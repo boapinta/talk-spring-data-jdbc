@@ -15,9 +15,7 @@
  */
 package de.schauderhaft.talk;
 
-import lombok.Setter;
 import org.springframework.data.domain.AuditorAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -28,7 +26,7 @@ import java.util.Optional;
 public class ModifiableAuditorAware
 		implements AuditorAware<String> {
 
-	String value;
+	String value = "vc_urbanikm";
 
 	@Override
 	public Optional<String> getCurrentAuditor() {
